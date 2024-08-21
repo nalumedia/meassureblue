@@ -4,11 +4,8 @@ import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
 
-// Supabase client setup
-// const supabase = createClient("https://webgwzfcvgcepjsdxmva.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmd3emZjdmdjZXBqc2R4bXZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxOTE1NDIsImV4cCI6MjAzOTc2NzU0Mn0.Jkqhq3ltrOJghRvR59rtb9VHf9P3aDpm91RvYrMOV1g");
 // Supabase client setup using environment variables
 const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY);
-
 
 function App() {
   const [species, setSpecies] = useState([]);
@@ -19,8 +16,26 @@ function App() {
   }, []);
 
   async function getSpecies() {
-    const { data } = await supabase.from("species").select();
-    setSpecies(data);
+    try {
+      // Fetch species with their associated family common name
+      const { data, error } = await supabase
+        .from("species")
+        .select(`
+          common_name, 
+          scientific_name, 
+          family:family_id (family_common_name)
+        `);
+
+      if (error) {
+        console.error("Error fetching species:", error);
+        return;
+      }
+
+      console.log("Fetched species data:", data);
+      setSpecies(data);
+    } catch (err) {
+      console.error("Unexpected error:", err);
+    }
   }
 
   return (
@@ -31,23 +46,25 @@ function App() {
         </a>
       </div>
       <h1>Measure.blue</h1>
+      <h3>Data from the sea</h3>
       <ul>
-        {species.map((item) => (
-          <li key={item.id}>{item.common_name} ({item.scientific_name}) </li>
+        {species.map((item, index) => (
+          <li key={index}>
+            {item.common_name} ({item.scientific_name}), Family: {item.family ? item.family.family_common_name : "N/A"}
+          </li>
         ))}
       </ul>
-      <div className="card">
+      {/* <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
-      </div>
+      </div> */}
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+        "With the sea you never take liberties. You ask her, you don't tell her. You have to remeber always that she's the leader, not you. You and the boat are dancing to her tune" - Michael Morpurgo, Alone Wild at Sea
       </p>
-   
     </>
   );
 }
