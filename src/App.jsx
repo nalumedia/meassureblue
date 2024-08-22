@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import reactLogo from './assets/react.svg';
+import measureLogo from './assets/measure_blue.png';
 import viteLogo from '/vite.svg';
 import './App.css';
 
@@ -23,7 +24,10 @@ function App() {
         .select(`
           common_name, 
           scientific_name, 
-          family:family_id (family_common_name)
+          family:family_id (
+            family_common_name,
+            family_scientific_name
+          )
         `);
 
       if (error) {
@@ -42,15 +46,21 @@ function App() {
     <>
       <div>
         <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+          <img src={measureLogo} className="logo react" alt="React logo" />
         </a>
       </div>
       <h1>Measure.blue</h1>
-      <h3>Data from the sea</h3>
+      <p className="read-the-docs">
+        "With the sea you never take liberties. You ask her, you don't tell her. You have to remember always that she's the leader, not you. You and the boat are dancing to her tune" - <em>Michael Morpurgo, Alone Wild at Sea</em>
+      </p>
+      <p className="homepage">
+        Our mission is to make it easy for you to listen to the sea by making ocean health data and resources open and available. We invite you to listen, to tune in and understand better so that you can make informed decisions that help heal the blue planet.
+      </p>
+      <h3>Species we are tuning into:</h3>
       <ul>
         {species.map((item, index) => (
           <li key={index}>
-            {item.common_name} ({item.scientific_name}), Family: {item.family ? item.family.family_common_name : "N/A"}
+            {item.family ? item.family.family_common_name : "N/A"} <em>({item.family ? item.family.family_scientific_name : "N/A"}) </em>- {item.common_name} <em>({item.scientific_name})</em>
           </li>
         ))}
       </ul>
@@ -62,9 +72,7 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div> */}
-      <p className="read-the-docs">
-        "With the sea you never take liberties. You ask her, you don't tell her. You have to remeber always that she's the leader, not you. You and the boat are dancing to her tune" - Michael Morpurgo, Alone Wild at Sea
-      </p>
+    
     </>
   );
 }
