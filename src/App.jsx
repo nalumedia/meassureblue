@@ -56,7 +56,7 @@ function App() {
       <p className="homepage">
         Our mission is to make it easy for you to listen to the sea by making ocean health data and resources open and available. We invite you to tune in, to listen, to learn, and to understand our oceans better so that you can make informed decisions that help heal the blue planet.
       </p>
-      <h3>Species we are tuning into:</h3>
+      <h3>🐟 Species of interest:</h3>
       <ul>
         {species.map((item, index) => (
           <li key={index}>
@@ -64,6 +64,11 @@ function App() {
           </li>
         ))}
       </ul>
+      <h3>🎯 Objectives:</h3>
+      <ul>
+        <li>🟢 In Progress: Aggregate mercury testing data for species of interest in order to understand how pollution, feed, and other factors impact mercury concentration in wild caught and farmed fish so that we can educate fishermen and sea farmers about best practices for providing clean fish for us to eat and the world about the impact pollution is having on globalfood supply.</li>
+        </ul>
+
       {/* <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
