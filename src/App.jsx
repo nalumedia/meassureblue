@@ -54,7 +54,7 @@ function App() {
         "With the sea you never take liberties. You ask her, you don't tell her. You have to remember always that she's the leader, not you. You and the boat are dancing to her tune" - <em>Michael Morpurgo, Alone Wild at Sea</em>
       </p>
       <p className="homepage">
-        Our mission is to make it easy for you to listen to the sea by making ocean health data and resources open and available. We invite you to listen, to tune in and understand better so that you can make informed decisions that help heal the blue planet.
+        Our mission is to make it easy for you to listen to the sea by making ocean health data and resources open and available. We invite you to tune in, to listen, to learn, and to understand our oceans better so that you can make informed decisions that help heal the blue planet.
       </p>
       <h3>Species we are tuning into:</h3>
       <ul>
