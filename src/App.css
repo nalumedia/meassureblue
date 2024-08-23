@@ -1,11 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@400;700&display=swap');
+
 body {
   background: linear-gradient(135deg, #030027 25%, #0471a6 100%);
   background-size: 400% 400%;
   animation: shimmering 15s ease infinite;
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Source Sans Pro', sans-serif; /* Set Source Sans Pro as default font */
   color: white; /* Optional: set text color to white for better contrast */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Libre Baskerville', serif; /* Apply Libre Baskerville to headings */
+}
+
+p {
+  font-family: 'Source Sans Pro', sans-serif; /* Ensure paragraphs use Source Sans Pro */
 }
 
 @keyframes shimmering {
@@ -36,7 +46,6 @@ body {
   filter: drop-shadow(0 0 2em #0471a6); /* Updated hover color specifically for React logo */
 }
 
-
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -59,11 +68,11 @@ ul {
 
 ul li {
   padding: 5px 0; /* Optional: Add some spacing around list items */
-  transition: box-shadow 0.3s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 ul li:hover {
-  background-color: #030027; /* Set background color on hover */
+  background-color: transparent; /* Ensure background is transparent */
   box-shadow: 0 0 10px #34E5FF, 0 0 20px #34E5FF, 0 0 30px #34E5FF;
   cursor: pointer;
 }
@@ -79,6 +88,26 @@ ul li:hover {
 
 .homepage {
   color: #ffffff;
-  font-size: 1.2rem; /* Adjust this value to your desired */
+  font-size: 1.2rem; /* Adjust this value to your desired font size */
 }
 
+.social-icons a {
+  color: #99F1FF;
+  font-size: .5rem; /* Adjusted to correct size */
+  transition: box-shadow 0.3s ease-in-out, color 0.3s ease-in-out;
+  padding-right: 0.5em; /* Add some spacing between icons */
+  padding-left: 0.5em; /* Add some spacing between icons */
+  text-decoration: none; /* Remove underline */
+  background-color: transparent; /* Ensure background is transparent */
+  outline: none; /* Remove outline */
+}
+
+.social-icons a:hover,
+.social-icons a:focus {
+  background-color: transparent; /* Ensure background is transparent */
+  color: #34E5FF; /* Hover color similar to other elements */
+  box-shadow: 0 0 10px #34E5FF, 0 0 20px #34E5FF, 0 0 30px #34E5FF; /* Hover effect similar to list items */
+  cursor: pointer;
+  border-radius: 0; /* Ensure no border-radius is adding a background */
+  outline: none; /* Remove focus outline */
+}
